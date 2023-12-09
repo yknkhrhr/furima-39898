@@ -11,7 +11,7 @@
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
 | first_name_kana    | string | null: false               |
-| birthdate          | string | null: false               |
+| birthdate          | date   | null: false               |
 
 ### Association
 
@@ -27,8 +27,8 @@
 | category_id        | integer    | null: false                    |
 | status_id          | integer    | null: false                    |
 | fee_burden_id      | integer    | null: false                    |
-| seller_address_id  | integer    | null: false                    |
-| days_id            | integer    | null: false                    |
+| prefecture_id      | integer    | null: false                    |
+| send_day_id        | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
@@ -39,7 +39,7 @@
 - belongs_to_active_hash :category
 - belongs_to_active_hash :status
 - belongs_to_active_hash :fee_burden
-- belongs_to_active_hash :seller_address
+- belongs_to_active_hash :prefecture
 - belongs_to_active_hash :days
 
 ## orders テーブル
@@ -72,6 +72,4 @@
 
 - belongs_to :order
 - belongs_to_active_hash :prefecture
-
-## categories テーブル(active_hash)
 
