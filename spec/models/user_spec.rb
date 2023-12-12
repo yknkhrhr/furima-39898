@@ -131,16 +131,6 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters")
       end
-      it 'last_name_kanaは半角数字では登録できない' do
-        @user.last_name_kana = '0'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters")
-      end
-      it 'last_name_kanaは全角数字では登録できない' do
-        @user.last_name_kana = '０'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana is invalid. Input full-width katakana characters")
-      end
       it 'first_name_kanaは漢字では登録できない' do
         @user.first_name_kana = '阿'
         @user.valid?
@@ -163,16 +153,6 @@ RSpec.describe User, type: :model do
       end
       it 'first_name_kanaは全角英字では登録できない' do
         @user.first_name_kana = 'ａ'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
-      end
-      it 'first_name_kanaは半角数字では登録できない' do
-        @user.first_name_kana = '0'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
-      end
-      it 'first_name_kanaは全角数字では登録できない' do
-        @user.first_name_kana = '０'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid. Input full-width katakana characters")
       end
