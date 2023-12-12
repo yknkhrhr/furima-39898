@@ -159,3 +159,16 @@
   cursor: pointer;
 }
 
+
+#error_explanation ul {
+  margin: 0;
+  padding-left: 80px;
+  list-style-type: circle;
+  color: red;
+}
+#error_explanation li {
+  margin: 0;
+  padding: 0;
+  font-size: 15px;
+}
+
