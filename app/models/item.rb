@@ -1,19 +1,26 @@
 class Item < ApplicationRecord
+  with_options presence: true do
+    validates :item_name
+    validates :detail
+    validates :price
+  end
+
   belongs_to :user
   #has_one :order
+  has_one_attached :image
+  belongs_to :category
+  belongs_to :status
+  belongs_to :fee_burden
+  belongs_to :prefecture
+  belongs_to :send_day
 
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category
-  validates :category_id,numericality: { othe_than: 1,  message: "can't be blank"}
-  belongs_to :status
-  validates :status_id,numericality: { othe_than: 1,  message: "can't be blank"}
-  belongs_to :fee_burden
-  validates :fee_burden_id,numericality: { othe_than: 1,  message: "can't be blank"}
-  belongs_to :prefecture
-  validates :prefecture_id,numericality: { othe_than: 1,  message: "can't be blank"}
-  belongs_to :send_day
-  validates :send_day_id,numericality: { othe_than: 1,  message: "can't be blank"}
-  has_one_attached :image
-
+    with_options numericality: { othe_than:1, message: "can't be blank"} do
+      validates :category_id
+      validates :status_id
+      validates :fee_burden_id
+      validates :prefecture_id
+      validates :send_day_id
+    end
 
 end
