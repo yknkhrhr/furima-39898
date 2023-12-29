@@ -7,9 +7,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    unless user_signed_in?
-      redirect_to user_session_path
-    end
   end
 
   def create
@@ -25,11 +22,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in? && current_user.id != @item.user_id 
+    if current_user.id != @item.user_id 
       redirect_to root_path
-    end
-    unless user_signed_in?
-      redirect_to user_session_path
     end
   end
 
@@ -43,7 +37,7 @@ class ItemsController < ApplicationController
   end
 
   def destroy
-    if user_signed_in? && current_user.id == @item.user_id 
+    if current_user.id == @item.user_id 
       @item.destroy
       redirect_to root_path
     else
