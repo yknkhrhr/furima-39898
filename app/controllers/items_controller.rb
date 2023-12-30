@@ -1,5 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :set_item, only: [:show, :edit, :update]
+  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   def index
     @items = Item.all.includes(:user).order("created_at DESC")
@@ -7,9 +8,6 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    unless user_signed_in?
-      redirect_to user_session_path
-    end
   end
 
   def create
@@ -25,11 +23,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if user_signed_in? && current_user.id != @item.user_id 
+    if current_user.id != @item.user_id 
       redirect_to root_path
-    end
-    unless user_signed_in?
-      redirect_to user_session_path
     end
   end
 
@@ -39,6 +34,15 @@ class ItemsController < ApplicationController
       redirect_to item_path(@item.id)
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    if current_user.id == @item.user_id 
+      @item.destroy
+      redirect_to root_path
+    else
+      redirect_to root_path
     end
   end
 
