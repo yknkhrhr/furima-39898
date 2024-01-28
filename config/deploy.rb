@@ -2,7 +2,7 @@
 lock '3.18.0'
 
 set :application, 'furima-39898'
-set :repo_url, "git@example.com:yknkhrhr/furima-39898.git"
+set :repo_url, 'git@github.com:yknkhrehre/furima-39898.git'
 set :branch, 'main'
 
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
