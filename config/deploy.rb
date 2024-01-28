@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
-lock "~> 3.18.0"
+lock '3.18.0'
 
-set :application, "furima-39898"
+set :application, 'furima-39898'
 set :repo_url, "git@example.com:yknkhrhr/furima-39898.git"
 set :branch, 'main'
 
